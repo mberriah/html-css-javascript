@@ -1,0 +1,100 @@
+/* Box sizing */
+* { box-sizing: border-box; } /*width = content + padding + border* - layout stays stable*/
+
+body {
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #0b0c10;
+    
+}
+
+/* Variables */
+:root {
+    --bar-bg: #111827;
+    --bar-border: rgba(255,255,255,.08);
+    --link-fg: rgba(255,255,255,.86);
+    --link-fg-muted: rgba(255,255,255,.7);
+    --hover-bg: rgba(255,255,255,.08);
+    --active-bg: rgba(16,185,129,.22);  /* green tint */
+    --active-accent: #10b981;           /* emerald */
+    --focus-ring: rgba(59,130,246,.55); /* blue */
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bar-bg: #ffffff;
+        --bar-border: rgba(0,0,0,.08);
+        --link-fg: rgba(0,0,0,.78);
+        --link-fg-muted: rgba(0,0,0,.6);
+        --hover-bg: rgba(0,0,0,.06);
+        --active-bg: rgba(16,185,129,.16);
+        --active-accent: #059669;
+        --focus-ring: rgba(59,130,246,.35);
+    }
+    body {background: #f3f4f6;}
+}
+
+/* Navigation icons */
+.icon-bar {
+    display: flex;
+    width: 100%;
+    background-color: var(--bar-bg);
+    border-top: 1px solid var(--bar-border);
+    border-bottom: 1px solid var(--bar-border);
+}
+
+.icon-link {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    height: 56px;
+    text-decoration: none;
+    position: relative;
+    transition: background-color .2s ease, transform 1s ease, color, .2s ease;
+}
+
+.icon-link:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+.icon-link i {
+    font-size: 20px;
+    color: currentColor;
+}
+
+.icon-link.is-active {
+    background: var(--active-bg);
+    color: var(--link-fg);
+}
+
+.icon-link:hover::after{
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 8px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--active-accent);
+}
+
+/* Keyboard focus */
+.icon-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring);
+    border-radius: 12px;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
